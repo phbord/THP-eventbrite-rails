@@ -5,11 +5,72 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <link rel="stylesheet" 
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" 
+          integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" 
+          crossorigin="anonymous">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" 
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" 
+            integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" 
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" 
+            integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" 
+            crossorigin="anonymous"></script>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
+    <%# HEADER %>
+    <header class="navbar navbar-expand-lg navbar-light bg-light">
+      <%= link_to "Le Corre - Bord Inc.", events_path, class: "navbar-brand" %>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <%# MENU GAUCHE %>
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <%= link_to "créer un événement", new_event_path, class: "nav-link" %>
+          </li>
+        </ul>
+        <%# MENU DROIT %>
+        <ul class="d-flex mb-0">
+          <% if user_signed_in? %>
+            <%# Dropdown : connecté %>
+            <li class="nav-item ml-3">
+              <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Mon profil
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                  <%= link_to "Mon profil", user_path(current_user.id), class: "dropdown-item" %>
+                  <%= link_to "Se déconnecter", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+                </div>
+              </div>
+            </li>
+          <% else %>
+            <%# Dropdown : NON connecté %>
+            <li class="nav-item ml-3">
+              <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  S'inscrire / Se connecter
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+                  <%= link_to "S'inscrire", new_user_registration_path, class: "dropdown-item" %>
+                  <%= link_to "Se connecter", new_user_session_path, class: "dropdown-item" %>
+                </div>
+              </div>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </header>
+
+    <%# CONTENU %>
     <%= yield %>
   </body>
 </html>

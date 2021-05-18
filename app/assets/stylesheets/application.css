@@ -13,3 +13,12 @@
  *= require_tree .
  *= require_self
  */
+
+ul,li {
+    list-style: none;
+    padding-left: 0;
+ }
+ 
+ input,textarea,select {
+    max-width: 400px;
+ }

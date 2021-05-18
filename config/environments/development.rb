@@ -65,4 +65,7 @@ Rails.application.configure do
 
   #config.action_mailer.delivery_method = :letter_opener #vérifie l'envoi d'email dans le navigateur
   config.action_mailer.perform_deliveries = false #Bloquer l'envoi des emails, si `false`
+
+  #permet à Devise d'envoyer des emails
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 end

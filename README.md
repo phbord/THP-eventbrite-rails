@@ -40,12 +40,36 @@ Things you may want to cover:
   * `rails server`            => lancer le serveur
   * `http://localhost:3000/`  => url racine
 
+* Heroku deployment instructions
+  * `heroku create nom-de-ton-app`
+  * `git remote --v`
+  * `git config --list | grep heroku`
+  * `git push heroku main`
+  * `heroku run rails db:migrate`
+  * `heroku run rails db:seed`
+  * `heroku ps:scale web=1`
+  * `heroku open` => ouverture de l'application dans le navigateur
+  * `heroku config`
+  * `heroku config:get GITHUB_USERNAME`
+  * `heroku config:set GITHUB_USERNAME=phbord` => Set a config var
+  * `heroku config:set SENDGRID_LOGIN='...'`
+  * `heroku config:set SENDGRID_PWD='...'`
+  * `heroku run rails console`
+
+* Devise deployment instructions
+  * `rails generate devise:install` => installation
+  * `rails g devise NomDuModel` => génération du model
+  * `rails generate devise:views` => générer les views
+
+* Controller creation
+  * `rails g controller events index new create show edit update destroy`
+  * `rails g controller users show`
+
 * TESTS en console
 
 |ACTION|COMMANDE|
 |:---|:---|
 |création d'utilisateur|`User.create(first_name:"Féfé", last_name:"ducont", encrypted_password:"sqldfljfqsfj86866", email:"foufoune@yopmail.com")`|
-|Test un envoi d'email|`UserMailer.welcome_email(user).deliver_now`|
 ||`heroku config:set SENDGRID_LOGIN=''`|
 ||`heroku config:set SENDGRID_PWD=''`|
 
@@ -89,3 +113,15 @@ Things you may want to cover:
 - model `User`
 - model `Event` => événements
 - model `Attendance` => participation à un événement (table de jointure)
+
+### Fonctionnalités de Devise
+- Database Authenticatable : possibilité de stocker les mots de passe dans leur version hashée pour valider l'authenticité d'un utilisateur pendant sa connexion (la base quoi) ;
+- Registerable : possibilité de créer un compte via un formulaire. Aussi, possibilité d'éditer et de supprimer son compte ;
+- Recoverable : possibilité de réinitialiser le mot de passe et d'envoyer des instructions par e-mail ;
+- Rememberable : possibilité d'utiliser le fameux cookie remember me (la session reste ouverte) ;
+- Validatable : possibilité de donner des validations pour les e-mails et mots de passe (taille, regex, etc) ;
+- Omniauthable : possibilité de gestion de OmniAuth (un service pour se connecter via son compte Google, Facebook ou autre) ;
+- Confirmable : possibilité de forcer la confirmation par e-mail du compte ;
+- Trackable : possibilité de tracker le nombre de login, leurs timestamps, et les adresses IP ;
+- Timeoutable : possibilité d'expirer des sessions après un certain temps d'inactivité ;
+- Lockable : possibilité de verrouiller un compte après trop de tentatives échouées de connexions ;
