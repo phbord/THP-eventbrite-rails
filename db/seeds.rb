@@ -16,18 +16,18 @@ Attendance.destroy_all
 20.times do
   f_name = Faker::Name.first_name
   l_name = Faker::Name.last_name
-  u = User.create(
+  u = User.create!(
     first_name: f_name,
     last_name: l_name,
     email: "#{f_name.downcase}.#{l_name.downcase}@yopmail.com",
-    encrypted_password: Faker::Internet.password(min_length: 6, max_length: 20)
+    password: Faker::Internet.password(min_length: 6, max_length: 20)
   )
   u.errors.messages
 end
 
 10.times do
   s_date = Faker::Date.forward(days: 30)
-  e = Event.create(
+  e = Event.create!(
     start_date: s_date.to_datetime,
     duration: 50,
     title: Faker::Lorem.paragraph_by_chars(number: rand(6..20)),
@@ -40,7 +40,7 @@ end
 end
 
 40.times do
-  a = Attendance.create(
+  a = Attendance.create!(
     stripe_customer_id: Faker::Number.number(digits: 10),
     user: User.all.sample,
     event: Event.all.sample
