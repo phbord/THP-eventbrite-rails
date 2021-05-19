@@ -34,7 +34,9 @@
             <%= label_tag 'Lieu' %>
             <%= text_field_tag 'location', '', required: true, class: 'form-control' %>
         </div>
-        <%= submit_tag "Envoyer", class: 'btn btn-primary' %>
+        <div class="form-group mt-3">
+            <%= submit_tag "Envoyer", class: 'btn btn-primary' %>
+        </div>
     <% end %>
 
     <p class="mt-3">

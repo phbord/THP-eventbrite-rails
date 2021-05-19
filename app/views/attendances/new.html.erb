@@ -1,0 +1,40 @@
+<div class="container">
+  <h1>Inscription à un événement</h1>
+
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+        <%# FORMULAIRE %>
+        <%= form_tag attendances_path do %>
+            <article>
+                <%# ALERTE %>
+                <% if flash[:error].present? %>
+                    <div class="alert alert-danger" role="alert">
+                        <%= flash[:error] %>
+                    </div>
+                <% end %>
+                <label class="amount">
+                    <span>Amount: $5.00</span>
+                </label>
+
+                <div class="form-group">
+                    <%#= label_tag 'Montant' %><br />
+                    <%#= text_field_tag 'amount', '', required: true, class: 'form-control' %>
+                </div>
+                <div class="form-group mt-3">
+                    <%#= submit_tag "Envoyer", class: 'btn btn-primary' %>
+                </div>
+            </article>
+            <%= Stripe::Customer %>
+
+            <script src="https://checkout.stripe.com/checkout.js" 
+                    class="stripe-button"
+                    data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+                    data-description="Achat d'un produit"
+                    data-amount="<%= @stripe_amount %>" 
+                    data-currency="eur"
+                    data-locale="fr">
+        <% end %>
+
+    </div>
+  </div>
+</div>

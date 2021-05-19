@@ -43,9 +43,12 @@
             <%# Dropdown : connecté %>
             <li class="nav-item ml-3">
               <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Mon profil
-                </button>
+                <button class="btn btn-secondary dropdown-toggle" 
+                        type="button" 
+                        id="dropdownMenuButton1" 
+                        data-toggle="dropdown" 
+                        aria-haspopup="true" 
+                        aria-expanded="false">Mon profil</button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                   <%= link_to "Mon profil", user_path(current_user.id), class: "dropdown-item" %>
                   <%= link_to "Se déconnecter", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
@@ -56,9 +59,12 @@
             <%# Dropdown : NON connecté %>
             <li class="nav-item ml-3">
               <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  S'inscrire / Se connecter
-                </button>
+                <button class="btn btn-secondary dropdown-toggle" 
+                        type="button" 
+                        id="dropdownMenuButton2" 
+                        data-toggle="dropdown" 
+                        aria-haspopup="true" 
+                        aria-expanded="false">S'inscrire / Se connecter</button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
                   <%= link_to "S'inscrire", new_user_registration_path, class: "dropdown-item" %>
                   <%= link_to "Se connecter", new_user_session_path, class: "dropdown-item" %>

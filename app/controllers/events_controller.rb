@@ -20,9 +20,6 @@ class EventsController < ApplicationController
       'location' => params[:location],
       'organizer' => current_user
     )
-    puts "*"*50
-    p event
-    puts "*"*50
 
     #Sauvegarde en BDD
     if event.save

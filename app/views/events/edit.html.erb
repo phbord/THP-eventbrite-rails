@@ -1,2 +1,38 @@
-<h1>Events#edit</h1>
-<p>Find me in app/views/events/edit.html.erb</p>
+<div class="container">
+    <h1>Edition d'un événement</h1>
+
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <%# FORMULAIRE %>
+            <%= form_tag url_for(action: 'create'), method: "post" do %>
+                <div class="form-group mt-3">
+                    <%= label_tag 'Date de départ' %>
+                    <%= date_field_tag 'start_date', '', required: true, class: 'form-control' %>
+                </div>
+                <div class="form-group mt-3">
+                    <%= label_tag 'Durée' %>
+                    <%= text_field_tag 'duration', '', required: true, class: 'form-control' %>
+                </div>
+                <div class="form-group mt-3">
+                    <%= label_tag 'Titre' %>
+                    <%= text_field_tag 'title', '', required: true, class: 'form-control' %>
+                </div>
+                <div class="form-group mt-3">
+                    <%= label_tag 'Description' %>
+                    <%= text_field_tag 'description', '', required: true, class: 'form-control' %>
+                </div>
+                <div class="form-group mt-3">
+                    <%= label_tag 'Prix' %>
+                    <%= text_field_tag 'price', '', required: true, class: 'form-control' %>
+                </div>
+                <div class="form-group mt-3">
+                    <%= label_tag 'Lieu' %>
+                    <%= text_field_tag 'location', '', required: true, class: 'form-control' %>
+                </div>
+                <div class="form-group mt-3">
+                    <%= submit_tag "Envoyer", class: 'btn btn-primary' %>
+                </div>
+            <% end %>
+        </div>
+    </div>
+</div>

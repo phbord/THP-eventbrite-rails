@@ -1,5 +1,4 @@
 class Attendance < ApplicationRecord
-
   after_create :inscription_email
 
   validates :stripe_customer_id,

@@ -65,12 +65,17 @@ Things you may want to cover:
 * Controller creation
   * `rails g controller events index new create show edit update destroy`
   * `rails g controller users show`
+  * `rails g controller attendances index new create show edit update destroy`
 
 * TESTS en console
 
 |ACTION|COMMANDE|
 |:---|:---|
 |création d'utilisateur|`User.create(first_name:"Féfé", last_name:"ducont", encrypted_password:"sqldfljfqsfj86866", email:"foufoune@yopmail.com")`|
+|création d'un événement|`tp p = Event.create(start_date: "2022-03-11", duration: 50, title: "trouduc", description: "sqdfsdfjqsldfmqsdfqslmdjfqsmjdfqsdfjsdfqsffsqf", price: 90, location: "puteau", organizer_id: "62")`|
+||``|
+||``|
+||``|
 ||`heroku config:set SENDGRID_LOGIN=''`|
 ||`heroku config:set SENDGRID_PWD=''`|
 
@@ -126,3 +131,21 @@ Things you may want to cover:
 - Trackable : possibilité de tracker le nombre de login, leurs timestamps, et les adresses IP ;
 - Timeoutable : possibilité d'expirer des sessions après un certain temps d'inactivité ;
 - Lockable : possibilité de verrouiller un compte après trop de tentatives échouées de connexions ;
+
+### Stripe
+Les utilisateurs peuvent rejoindre un événement
+- page de l'événement => ni _participant_, ni _administrateur_
+  - bouton de redirection vers une page _formulaire d'inscription_
+  - `attendances#new`
+- si paie l'événement et tout en règle
+  - création de sa participation
+  - puis redirigé vers l'événement
+  - stockage de l'id `Stripe` de l'utilisateur
+- Si le créateur va sur le show d'un événement qu'il a créé
+  - accès à un lien de redirection vers la liste des invités
+  - inaccessibles aux non _administrateurs_
+  - `attendances#index`
+- page des invités à l'événement
+  - lien pour modifier (ou supprimer) l'événement
+  - inaccessibles aux non _administrateurs_
+  - `events#edit`
