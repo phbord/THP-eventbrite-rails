@@ -23,8 +23,6 @@ Things you may want to cover:
   * `rails g mailer UserMailer`
   * `rails g mailer AttendanceMailer`
 
-* How to run the test suite
-
 * Services (job queues, cache servers, search engines, etc.)
 
 * Deployment instructions
@@ -55,6 +53,9 @@ Things you may want to cover:
   * `heroku config:set SENDGRID_LOGIN='...'`
   * `heroku config:set SENDGRID_PWD='...'`
   * `heroku run rails console`
+  * `heroku ps`, puis `heroku ps:stop run.4859` => stopper toutes les consoles en route
+  * `heroku open`
+  * https://git.heroku.com/thpeventbrite.git
 
 * Devise deployment instructions
   * `rails generate devise:install` => installation
