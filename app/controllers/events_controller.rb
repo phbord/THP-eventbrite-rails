@@ -6,12 +6,15 @@ class EventsController < ApplicationController
   end
 
   def new
+    @event = Event.new
+    #@event = event_find
+    #@event = Event.find(Event.last.id)
   end
 
   def create
     #Récupération des champs du formulaire
     date = Time.zone.now
-    event = Event.new(
+    @event = Event.new(
       'start_date' => date,
       'duration' => params[:duration],
       'title' => params[:title],
@@ -22,10 +25,13 @@ class EventsController < ApplicationController
     )
 
     #Sauvegarde en BDD
-    if event.save
-      redirect_to event_path(event.id), alert: "Enregistrement réussi !"
+    if @event.save && params[:picture]
+      @event.picture.attach(params[:picture]) #attribution de l'avatar à User
+
+      redirect_to event_path(@event.id), alert: "Enregistrement réussi !"
+      #redirect_to event_picture_index_path(@event.id)
     else
-      p event.errors.messages
+      p @event.errors.messages
       flash.now[:alert] = "Echec à l'enregistrement !"
       render 'new'
     end

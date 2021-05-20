@@ -8,8 +8,13 @@
         </div>
     <% end %>
 
+    <% if @event.picture.attached? %>
+        <%= image_tag @event.picture, alt: 'picture', class: 'card-img-top' %>
+    <% end %>
+
     <%# FORMULAIRE %>
-    <%= form_tag url_for(action: 'create'), method: "post" do %>
+    <%= form_tag url_for(action: 'create'), method: "post", multipart: true do %>
+        <%= file_field_tag :picture %>
         <%#<div class="form-group mt-3">
             <%#= label_tag 'Date' %>
             <%#= text_field_tag 'start_date', '', required: true, class: 'form-control' %>
@@ -34,12 +39,9 @@
             <%= label_tag 'Lieu' %>
             <%= text_field_tag 'location', '', required: true, class: 'form-control' %>
         </div>
-        <div class="form-group mt-3">
-            <%= submit_tag "Envoyer", class: 'btn btn-primary' %>
+        <div class="form-group d-flex my-3">
+            <%= submit_tag "Envoyer", class: 'btn btn-primary mr-2' %>
+            <%= link_to "Accueil", events_path, class: "btn btn-secondary" %>
         </div>
     <% end %>
-
-    <p class="mt-3">
-        <%= link_to "Accueil", events_path, class: "btn btn-primary" %>
-    </p>
 </div>

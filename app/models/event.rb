@@ -25,6 +25,8 @@ class Event < ApplicationRecord
   has_many :users, through: :attendances
   belongs_to :organizer, class_name: 'User'
 
+  has_one_attached :picture
+
   def end_date
     self.start_date + self.duration*60
   end
