@@ -20,7 +20,7 @@
                         <%= @event.description %>
                     </p>
                 </div>
-                <%# Picture %>
+                <%# Picture upload %>
                 <% if @event.picture.attached? %>
                     <%= image_tag @event.picture, alt: 'picture', class: 'card-img-top card-img-avatar' %>
                 <% end %>

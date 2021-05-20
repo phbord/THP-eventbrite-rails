@@ -7,8 +7,6 @@ class EventsController < ApplicationController
 
   def new
     @event = Event.new
-    #@event = event_find
-    #@event = Event.find(Event.last.id)
   end
 
   def create
@@ -26,10 +24,9 @@ class EventsController < ApplicationController
 
     #Sauvegarde en BDD
     if @event.save && params[:picture]
-      @event.picture.attach(params[:picture]) #attribution de l'avatar à User
+      @event.picture.attach(params[:picture]) #attribution de la photo à Event
 
       redirect_to event_path(@event.id), alert: "Enregistrement réussi !"
-      #redirect_to event_picture_index_path(@event.id)
     else
       p @event.errors.messages
       flash.now[:alert] = "Echec à l'enregistrement !"
