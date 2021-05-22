@@ -18,6 +18,8 @@ Things you may want to cover:
 
 * Database initialization
   * `rails g migration AddingUserEventParticipationIndex`
+  * `rails g migration AddingValidatedToEvent`
+  * `rails g migration AddingIsAdminToUser`
 
 * Controller creation
   * `rails g mailer UserMailer`
@@ -66,6 +68,7 @@ Things you may want to cover:
   * `rails g controller events index new create show edit update destroy`
   * `rails g controller users show`
   * `rails g controller attendances index new create show edit update destroy`
+  * `rails g controller admin index new create show edit update destroy`
 
 * TESTS en console
 

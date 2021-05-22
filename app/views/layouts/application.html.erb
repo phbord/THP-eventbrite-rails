@@ -51,6 +51,7 @@
                         aria-expanded="false">Mon profil</button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                   <%= link_to "Mon profil", user_path(current_user.id), class: "dropdown-item" %>
+                  <%= link_to "Administrateur", admin_users_path, class: "dropdown-item" %>
                   <%= link_to "Se déconnecter", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
                 </div>
               </div>

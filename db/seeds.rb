@@ -13,6 +13,15 @@ User.destroy_all
 Event.destroy_all
 Attendance.destroy_all
 
+u1 = User.create!(
+  first_name: "pierre-henri",
+  last_name: "bord",
+  email: "phbord@protonmail.com",
+  password: "foobar",
+  is_admin: true
+)
+u1.errors.messages
+
 20.times do
   f_name = Faker::Name.first_name
   l_name = Faker::Name.last_name
@@ -20,7 +29,8 @@ Attendance.destroy_all
     first_name: f_name,
     last_name: l_name,
     email: "#{f_name.downcase}.#{l_name.downcase}@yopmail.com",
-    password: Faker::Internet.password(min_length: 6, max_length: 20)
+    password: Faker::Internet.password(min_length: 6, max_length: 20),
+    is_admin: false
   )
   u.errors.messages
 end
@@ -34,7 +44,8 @@ end
     description: Faker::Lorem.paragraph_by_chars(number: rand(400..1000)),
     price: rand(1..500),
     location: Faker::Lorem.word,
-    organizer: User.all.sample
+    organizer: User.all.sample,
+    validated: nil
   )
   e.errors.messages
 end
