@@ -1,13 +1,4 @@
 Rails.application.routes.draw do
-  namespace :admin do
-    get 'users/index'
-    get 'users/new'
-    get 'users/create'
-    get 'users/show'
-    get 'users/edit'
-    get 'users/update'
-    get 'users/destroy'
-  end
   root 'events#index'
   get 'static_pages/index'
   get 'static_pages/secret'

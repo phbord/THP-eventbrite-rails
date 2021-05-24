@@ -1,7 +1,7 @@
 class Event < ApplicationRecord
   validates :start_date,
-            presence: true,
-            numericality: { greater_than_or_equal_to: Time.now.to_i }
+            presence: true#,
+            #numericality: { greater_than_or_equal_to: Time.now.to_i }
 
   validates :duration,
             presence: true, if: :mult_5_and_positive?

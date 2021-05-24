@@ -69,6 +69,8 @@ Things you may want to cover:
   * `rails g controller users show`
   * `rails g controller attendances index new create show edit update destroy`
   * `rails g controller admin index new create show edit update destroy`
+  * `rails g controller admin users new create show edit update destroy`
+  * `rails g controller admin events new create show edit update destroy`
 
 * TESTS en console
 

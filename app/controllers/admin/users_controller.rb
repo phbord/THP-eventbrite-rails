@@ -3,7 +3,7 @@ class Admin::UsersController < ApplicationController
 
   def index
     @user = User.find(current_user.id)
-    @users = user_all
+    @users = users_all
   end
 
   def new
@@ -18,18 +18,18 @@ class Admin::UsersController < ApplicationController
 
   def edit
     @user = user_find
+    @users = users_all
+    @events = events_all
   end
 
   def update
     #Récupération des champs du formulaire
     user = user_find
-    form_params = {
-      is_admin: params[:is_admin]
-    }
+    user_params = { is_admin: params[:is_admin] }
 
     #Sauvegarde en BDD
-    if user.update(form_params)
-      redirect_to admin_users_path, alert: "Enregistrement réussi !"
+    if user.update(user_params)
+      redirect_to admin_users_path, success: "Enregistrement réussi !"
     else
       flash.now[:alert] = "Echec à l'enregistrement !"
       render :edit
@@ -42,7 +42,7 @@ class Admin::UsersController < ApplicationController
 
     #Sauvegarde en BDD
     if user.destroy
-      redirect_to admin_users_path, alert: "Suppression du like, réussie !"
+      redirect_to admin_users_path, success: "Suppression du like, réussie !"
     else
       flash.now[:alert] = "Echec à l'enregistrement !"
       render :index
@@ -55,13 +55,11 @@ class Admin::UsersController < ApplicationController
     User.find(params[:id])
   end
 
-  def user_all
+  def users_all
     User.all
   end
 
-  def check_if_admin?
-    # unless current_user.is_admin?
-    #   redirect_to root_path
-    # end
+  def events_all
+    Event.all
   end
 end

@@ -1,7 +1,7 @@
 <div class="container my-5">
     <%# ALERTE %>
     <% flash.each do |type, msg| %>
-        <div class="alert alert-danger" role="alert">
+        <div class="alert alert-<%= type %>" role="alert">
             <%= msg %>
         </div>
     <% end %>
@@ -9,42 +9,44 @@
     <h1>Liste des événements</h1>
     <ul class="row">
         <% @events.all.each do |e| %>
-            <li class="col-md-4 mb-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">
-                            <%= e.title %>
-                        </h5>
-                        <p class="card-text text-truncate">
-                            <%= e.description %>
-                        </p>
-                        <div class="card-text">
-                            <span class="text-muted">Date: </span>
-                            <%= e.start_date.to_date.strftime("%d/%m/%Y") %>
+            <% if is_validated?(e.id) %>
+                <li class="col-md-4 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <%= e.title %>
+                            </h5>
+                            <p class="card-text text-truncate">
+                                <%= e.description %>
+                            </p>
+                            <div class="card-text">
+                                <span class="text-muted">Date: </span>
+                                <%= e.start_date.to_date.strftime("%d/%m/%Y") %>
+                            </div>
+                            <div class="card-text">
+                                <span class="text-muted">Durée : </span>
+                                <%= e.duration %>
+                            </div>
+                            <div class="card-text">
+                                <span class="text-muted">Prix : </span>
+                                <%= e.price %>
+                            </div>
+                            <div class="card-text">
+                                <span class="text-muted">Lieu : </span>
+                                <%= e.location %>
+                            </div>
+                            <div class="card-text">
+                                <span class="text-muted">Organisateur : </span>
+                                <%= organizer_find(e).first_name %> 
+                                <%= organizer_find(e).last_name %>
+                            </div>
+                            <p class="mt-3">
+                                <%= link_to "Détails", event_path(e.id), class: "btn btn-outline-primary btn-sm" %>
+                            </p>
                         </div>
-                        <div class="card-text">
-                            <span class="text-muted">Durée : </span>
-                            <%= e.duration %>
-                        </div>
-                        <div class="card-text">
-                            <span class="text-muted">Prix : </span>
-                            <%= e.price %>
-                        </div>
-                        <div class="card-text">
-                            <span class="text-muted">Lieu : </span>
-                            <%= e.location %>
-                        </div>
-                        <div class="card-text">
-                            <span class="text-muted">Organisateur : </span>
-                            <%= User.find(e.organizer_id).first_name %> 
-                            <%= User.find(e.organizer_id).last_name %>
-                        </div>
-                        <p class="mt-3">
-                            <%= link_to "Détails", event_path(e.id), class: "btn btn-outline-primary btn-sm" %>
-                        </p>
                     </div>
-                </div>
-            </li>
+                </li>
+            <% end %>
         <% end %>
     </ul>
 </div>

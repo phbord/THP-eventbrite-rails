@@ -26,7 +26,7 @@ class EventsController < ApplicationController
     if @event.save && params[:picture]
       @event.picture.attach(params[:picture]) #attribution de la photo à Event
 
-      redirect_to event_path(@event.id), alert: "Enregistrement réussi !"
+      redirect_to event_path(@event.id), success: "Enregistrement réussi !"
     else
       p @event.errors.messages
       flash.now[:alert] = "Echec à l'enregistrement !"

@@ -1,4 +1,12 @@
 <div class="container">
+
+    <%# ALERTE %>
+    <% flash.each do |type, msg| %>
+        <div class="alert alert-<%= type %>" role="alert">
+            <%= msg %>
+        </div>
+    <% end %>
+
     <h1>Edition d'un événement</h1>
 
     <div class="row">

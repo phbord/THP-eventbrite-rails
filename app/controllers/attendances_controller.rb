@@ -22,7 +22,7 @@ class AttendancesController < ApplicationController
 
     #Sauvegarde en BDD
     # if attendance.save
-    #   redirect_to event_path(attendance.user), alert: "Enregistrement réussi !"
+    #   redirect_to event_path(attendance.user), success: "Enregistrement réussi !"
     # else
     #   p attendance.errors.messages
     #   flash.now[:alert] = "Echec à l'enregistrement !"

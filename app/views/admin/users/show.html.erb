@@ -1,4 +1,12 @@
 <div class="container my-5">
+
+    <%# ALERTE %>
+    <% flash.each do |type, msg| %>
+        <div class="alert alert-<%= type %>" role="alert">
+            <%= msg %>
+        </div>
+    <% end %>
+
     <h1>Profil</h1>
     <div class="">
         <div class="">

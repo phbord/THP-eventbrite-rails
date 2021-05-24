@@ -3,7 +3,7 @@
 
     <%# ALERTE %>
     <% flash.each do |type, msg| %>
-        <div class="alert alert-danger" role="alert">
+        <div class="alert alert-<%= type %>" role="alert">
             <%= msg %>
         </div>
     <% end %>

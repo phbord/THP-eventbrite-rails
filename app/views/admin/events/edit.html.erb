@@ -1,5 +1,5 @@
 <div class="container my-5">
-    <h1>Editer un utilisateur</h1>
+    <h1>Editer un événement</h1>
 
     <%# ALERTE %>
     <% flash.each do |type, msg| %>
@@ -12,10 +12,13 @@
 
     <%# FORMULAIRE %>
     <%= form_tag admin_user_path, method: "put", multipart: true do %>
-        <div class="form-group mt-3">
-            <%= check_box_tag :is_admin, @user.is_admin, class: 'form-check-label mr-2' %>
-            <%= label_tag :is_admin, 'Administrateur', class:"form-check-label" %>
-        </div>
+        <% @user.organised_events.each_with_index do |u,k| %>
+            <%= hidden_field_tag 'event_id', u.id %>
+            <div class="form-group mt-3">
+                <%= check_box_tag "validated#{k}", u.validated, is_validated_checked(u), class: 'form-check-label mr-2' %>
+                <%= label_tag "validated#{k}", '"' + u.title + '" validé', class:"form-check-label" %>
+            </div>
+        <% end %>
         <div class="form-group d-flex my-3">
             <%= submit_tag "Envoyer", class: 'btn btn-primary mr-2' %>
             <%= link_to "Accueil", events_path, class: "btn btn-secondary" %>
